@@ -51,7 +51,7 @@ st.subheader("About Me")
 
 # TODO: Modify and adapt the following lines to your info, you can add or remove some details if you want
 st.write("""
-- 🧑‍💻 I am a <Current Role and/or Studies> 
+- 🧑‍💻 I am a <Current Role and/or Studies> I am la fucking cabra
 
 - 🛩️ prev: <Previous Experience, Background or Studies>
 
