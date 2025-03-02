@@ -53,7 +53,14 @@ max_year = movies_df["release_year"].max()
 num_missing_directors = movies_df['director'].isnull().sum()
 
 # TODO: Ex 2.4: How many different countries are there in the data?
-n_countries = len(set(all_countries_list)) 
+movies_df["country"] = movies_df["country"].fillna("Unknown")
+all_countries_string = ", ".join(movies_df["country"].astype(str))  # Unir todos los países en un solo string
+all_countries_list = all_countries_string.split(", ")
+if all_countries_list:
+    n_countries = len(set(all_countries_list))
+else:
+    n_countries = 0  # Separar cada país individualmente
+n_countries = len(set(all_countries_list))
 
 # TODO: Ex 2.5: How many characters long are on average the title names?
 avg_title_length = movies_df['title_length'].mean()
