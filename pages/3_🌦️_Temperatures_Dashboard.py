@@ -55,8 +55,9 @@ with st.expander("Check the complete dataset:"):
 temps_df.rename(columns=lambda x: x.strip(), inplace=True)  
 
 # TODO: Ex 3.2: Create a new column called `AvgTemperatureCelsius` that contains the temperature in Celsius degrees.
-temps_df["AvgTemperatureCelsius"] = (temps_df["AvgTemperature"] - 32) * 5/9       # uncomment this line to complete it
-
+def fahrenheit_to_celsius(f):
+    return (f - 32) * 5 / 9
+temps_df["AvgTemperatureCelsius"] = temps_df["AvgTemperatureFahrenheit"].apply(fahrenheit_to_celsius)
 
 # ----- Extracting some basic information from the dataset -----
 
