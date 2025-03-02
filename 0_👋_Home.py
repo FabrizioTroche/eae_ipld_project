@@ -4,7 +4,7 @@ import base64
     
 # ----- Page configs (tab title, favicon) -----
 st.set_page_config(
-    page_title="<Your Name> Portfolio",
+    page_title="Fabrizio Troche Portfolio",
     page_icon="📊",
 )
 
@@ -39,7 +39,7 @@ st.write(f"""
 
 
 # ----- Personal title or short description -----
-current_role = "Current Role and/or Studies or Description"   # TODO: Change this
+current_role = "Master’s Student in Big Data & Analytics | Data Analyst & Industrial Engineer"  # TODO: Change this
 
 st.write(f"""<div style="text-align: center;"><h4><i>{current_role}</i></h4></div>""", unsafe_allow_html=True)
 
@@ -51,19 +51,27 @@ st.subheader("About Me")
 
 # TODO: Modify and adapt the following lines to your info, you can add or remove some details if you want
 st.write("""
-- 🧑‍💻 I am a <Current Role and/or Studies> I am la fucking cabra
+- 👨‍💻 I am a **Data Analyst & Industrial Engineer**, passionate about transforming data into impactful decisions. Currently pursuing a **Master’s in Big Data & Analytics** at **EAE Business School, Barcelona**.
+  
+- ✂️ prev: **Strategic Planning Analyst at Lexus (2021-2024, Paraguay)**  
+  Led the strategic planning for Lexus, helping the brand climb from **6th to 4th** place in the **premium automotive market share**.  
+  Managed **KPI dashboards** and developed **data-driven reports** to support optimization strategies.
 
-- 🛩️ prev: <Previous Experience, Background or Studies>
+- ❤️ My passions: **Data Analysis, Business Intelligence, and Process Optimization**.  
+  I enjoy working with **SQL, Python, Power BI**, and **Excel** to create meaningful insights.
 
-- ❤️ <Your Passion and/or Interests>
+- 📺 Personal Projects: **Building dashboards & automating reports** using **Power BI & Python**.
 
-- 🤖 <Your Personal Projects>
+- ✈️ Hobbies: **Traveling, playing FIFA, and working on analytics projects**.
 
-- 🏂 <Your Hobbies>
+- 📩 How to reach me: **trochejm@gmail.com** | **[LinkedIn](https://www.linkedin.com/in/fabriziotroche)**
 
-- 📫 How to reach me: <Your Email>
+- 📍 Barcelona
 
-- 🏠 Barcelona
+- 🖥️ Check my projects: **[GitHub](https://github.com/fabriziotroche)**
+         
+
+
 """)
 
 # Feel free to add other points like your Linkedin, Github, Social Media, etc.
