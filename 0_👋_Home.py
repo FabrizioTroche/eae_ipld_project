@@ -24,7 +24,7 @@ st.write(f"""<div style="text-align: center;"><h1 style="text-align: center;">ðŸ
 
 
 # ----- Profile image file -----
-profile_image_file_path = "profile.png"
+profile_image_file_path = "profile.jpg"
 
 with open(profile_image_file_path, "rb") as img_file:
     img = "data:image/png;base64," + base64.b64encode(img_file.read()).decode()
