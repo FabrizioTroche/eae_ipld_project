@@ -63,7 +63,10 @@ else:
 n_countries = len(set(all_countries_list))
 
 # TODO: Ex 2.5: How many characters long are on average the title names?
+movies_df['title_length'] = movies_df['title'].astype(str).apply(len)
+
 avg_title_length = movies_df['title_length'].mean()
+
 
 
 # ----- Displaying the extracted information metrics -----
