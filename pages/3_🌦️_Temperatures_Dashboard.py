@@ -8,7 +8,7 @@ import streamlit as st
 
 # ----- Page configs -----
 st.set_page_config(
-    page_title="<Your Name> Portfolio",
+    page_title="Fabrizio Troche Portfolio",
     page_icon="📊",
 )
 
@@ -31,8 +31,12 @@ st.divider()
 def load_data():
     data_path = "data/cities_temperatures.csv"
 
-    temps_df = None  # TODO: Ex 3.1: Load the dataset using Pandas, use the data_path variable and set the index column to "show_id"
+# TODO: Ex 3.1: Load the dataset using Pandas, use the data_path variable and set the index column to "show_id"
 
+    temps_df = pd.read_csv(data_path)  # Carga el dataset
+    temps_df["Date"] = pd.to_datetime(temps_df["Date"]).dt.date  # Convierte la columna Date a tipo fecha
+  
+    
     if temps_df is not None:
         temps_df["Date"] = pd.to_datetime(temps_df["Date"]).dt.date
 
@@ -49,27 +53,30 @@ with st.expander("Check the complete dataset:"):
 # ----- Data transformation -----
 
 # TODO: Ex 3.2: Create a new column called `AvgTemperatureCelsius` that contains the temperature in Celsius degrees.
-# temps_df["AvgTemperatureCelsius"] = ...       # uncomment this line to complete it
+temps_df["AvgTemperatureCelsius"] = (temps_df["AvgTemperature"] - 32) * 5/9       # uncomment this line to complete it
 
 
 # ----- Extracting some basic information from the dataset -----
 
 # TODO: Ex 3.3: How many different cities are there? Provide a list of them.
-unique_countries_list = None
+unique_countries_list = temps_df["City"].unique().tolist()
 
 # TODO: Ex 3.4: Which are the minimum and maximum dates?
-min_date = None
-max_date = None
+min_date = temps_df["Date"].min()
+max_date = temps_df["Date"].max()
 
 # TODO:  Ex 3.5: What are the global minimum and maximum temperatures? Find the city and the date of each of them.
-min_temp = None
-max_temp = None
+min_temp_row = temps_df.loc[temps_df["AvgTemperatureCelsius"].idxmin()]
+max_temp_row = temps_df.loc[temps_df["AvgTemperatureCelsius"].idxmax()]
 
-min_temp_city = None
-min_temp_date = None
+min_temp = min_temp_row["AvgTemperatureCelsius"]
+max_temp = max_temp_row["AvgTemperatureCelsius"]
 
-max_temp_city = None
-max_temp_date = None
+min_temp_city = min_temp_row["City"]
+min_temp_date = min_temp_row["Date"]
+
+max_temp_city = max_temp_row["City"]
+max_temp_date = max_temp_row["Date"]
 
 
 # ----- Displaying the extracted information metrics -----
@@ -131,37 +138,39 @@ if unique_countries_list is not None and len(selected_cities) > 0:
 
     fig = plt.figure(figsize=(10, 5))
 
-    # for city in selected_cities:
-    #     city_df = None            # TODO
-    #     city_df_period = None     # TODO
-    #     plt.plot()                # TODO 
-    # plt.title()   # TODO
-    # plt.xlabel()  # TODO
-    # plt.ylabel()  # TODO
-
-    plt.legend()
+for city in selected_cities:
+    city_df = temps_df[temps_df["City"] == city]
+    city_df_period = city_df[(city_df["Date"] >= start_date) & (city_df["Date"] <= end_date)]
     
-    c.pyplot(fig)
+    plt.plot(city_df_period["Date"], city_df_period["AvgTemperatureCelsius"], label=city)
+
+plt.title("Temperature Trends Over Time")
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.legend()
+plt.grid(True)
+
+c.pyplot(fig)
 
 
 
     # TODO: Make a histogram of the temperature reads of a list of selected cities, for the selected time period, 
     # every city has to be its own distribution with a different color.
 
-    fig = plt.figure(figsize=(10, 5))
+fig = plt.figure(figsize=(10, 5))
 
-    # for city in selected_cities:
-    #     city_df = None            # TODO
-    #     city_df_period = None     # TODO
-    #     plt.hist()                # TODO
+for city in selected_cities:
+    city_df = temps_df[temps_df["City"] == city]
+    city_df_period = city_df[(city_df["Date"] >= start_date) & (city_df["Date"] <= end_date)]
+    
+    plt.hist(city_df_period["AvgTemperatureCelsius"], alpha=0.5, label=city, bins=30)
 
-    # plt.title()   # TODO
-    # plt.xlabel()  # TODO
-    # plt.ylabel()  # TODO
+plt.title("Temperature Distribution")
+plt.xlabel("Temperature (°C)")
+plt.ylabel("Frequency")
+plt.legend()
 
-    plt.legend()
-
-    c.pyplot(fig)
+c.pyplot(fig)
 
 
 
